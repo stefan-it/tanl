@@ -228,7 +228,8 @@ def main():
             # start trainer
             logging.info('Start training')
             trainer.train(
-                model_path=model_args.model_name_or_path
+                model_path=model_args.model_name_or_path,
+                resume_from_checkpoint=False
             )
 
             # save model parameters
