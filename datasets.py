@@ -575,7 +575,7 @@ class NERDataset(JointERDataset):
         labels = []
         with open(file_path, 'r') as f:
             for line in f:
-                if line.startswith("TOKEN\t"):
+                if line.startswith("TOKEN\t") or line.startswith("# "):
                     continue
                 if line.startswith("-DOCSTART-") or line == "" or line == "\n":
                     if tokens:
