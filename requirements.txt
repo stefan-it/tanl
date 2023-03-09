@@ -1,4 +1,4 @@
-torch~=1.7.1
-transformers~=4.0.0
+transformers
 networkx>=2.5
-scipy
+sentencepiece
+protobuf==3.20
