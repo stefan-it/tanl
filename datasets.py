@@ -584,7 +584,7 @@ class NERDataset(JointERDataset):
                     splits = line.split()
                     tokens.append(splits[0])
                     if len(splits) > 1:
-                        label = splits[-1].strip()
+                        label = splits[1].strip()
                         if label == 'O':
                             label = None
                         labels.append(label)
@@ -664,6 +664,23 @@ class CoNLL03Dataset(NERDataset):
         'MISC': 'miscellaneous',
         'ORG': 'organization',
         'PER': 'person',
+    }
+
+
+@register_dataset
+class HIPE2022Dataset(NERDataset):
+    """
+    HIPE 2022 dataset (NER).
+    """
+    name = "hipe2022"
+
+    natural_entity_types = {
+        'pers': 'person',
+        'scope': 'scope',
+        'work': 'work',
+        'loc': 'location',
+        'date': 'date',
+        'object': 'object',
     }
 
 
