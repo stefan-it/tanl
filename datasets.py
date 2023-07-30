@@ -575,7 +575,7 @@ class NERDataset(JointERDataset):
         labels = []
         with open(file_path, 'r') as f:
             for line in f:
-                if line.startswith("TOKEN\t") or line.startswith("# "):
+                if line.startswith("TOKEN\t") or line.startswith("# ") or line.startswith("# \n"):
                     continue
                 if line.startswith("-DOCSTART-") or line == "" or line == "\n":
                     if tokens:
@@ -683,6 +683,29 @@ class HIPE2022Dataset(NERDataset):
         'loc': 'location',
         'date': 'date',
         'object': 'object',
+    }
+
+
+@register_dataset
+class GermEval2014Dataset(NERDataset):
+    """
+    GermEval 2014 dataset (NER).
+    """
+    name = "germeval2014"
+
+    natural_entity_types = {
+        'LOC': 'location',
+        'LOCderiv': 'location with derivation',
+        'LOCpart': 'location with compound',
+        'ORG': 'organization',
+        'ORGderiv': 'organization with derivation',
+        'ORGpart': 'organization with compound',
+        'OTH': 'other with derivation',
+        'OTHderiv': 'other with derivation',
+        'OTHpart': 'other with compound',
+        'PER': 'person',
+        'PERderiv': 'person with derivation',
+        'PERpart': 'persion with compound',
     }
 
 
