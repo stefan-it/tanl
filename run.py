@@ -77,7 +77,7 @@ def main():
     # parse remaining arguments and divide them into three categories
     second_parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
     second_parser.set_defaults(**defaults)
-    model_args, data_args, training_args = second_parser.parse_args_into_dataclasses(remaining_args)
+    model_args, data_args, training_args, dataset_args = second_parser.parse_args_into_dataclasses(remaining_args)
 
     try:
         os.mkdir(training_args.output_dir)
@@ -171,7 +171,7 @@ def main():
     )
 
     # get list of dataset names
-    dataset_names = data_args.datasets.split(',')
+    dataset_names = dataset_args.datasets.split(',')
 
     # construct list of episode indices
     episode_indices = get_episode_indices(data_args.episodes)
@@ -227,10 +227,7 @@ def main():
 
             # start trainer
             logging.info('Start training')
-            trainer.train(
-                model_path=model_args.model_name_or_path,
-                resume_from_checkpoint=False
-            )
+            trainer.train(resume_from_checkpoint=None)
 
             # save model parameters
             trainer.save_model(episode_output_dir)
