@@ -171,7 +171,7 @@ def main():
     )
 
     # get list of dataset names
-    dataset_names = dataset_args.datasets.split(',')
+    dataset_names = dataset_args.dataset.split(',')
 
     # construct list of episode indices
     episode_indices = get_episode_indices(data_args.episodes)
